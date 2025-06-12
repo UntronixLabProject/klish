@@ -148,7 +148,7 @@ void kexec_free(kexec_t *exec)
 		close(exec->std_in);
 	if (exec->std_out != -1)
 		close(exec->std_out);
-	if (exec->stderr != -1)
+	if (exec->std_err != -1)
 		close(exec->std_err);
 
 	faux_buf_free(exec->bufin);

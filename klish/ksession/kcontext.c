@@ -17,6 +17,17 @@
 #include <klish/kscheme.h>
 #include <klish/kexec.h>
 
+#ifdef OPENWRT_BUILD
+#ifdef stdin
+#undef stdin
+#endif
+#ifdef stdout
+#undef stdout
+#endif
+#ifdef stderr
+#undef stderr
+#endif
+#endif
 
 struct kcontext_s {
 	kcontext_type_e type;

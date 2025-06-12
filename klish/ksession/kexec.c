@@ -35,9 +35,9 @@ struct kexec_s {
 	ksession_t *session;
 	faux_list_t *contexts;
 	bool_t dry_run;
-	int stdin;
-	int stdout;
-	int stderr;
+	int std_in;
+	int std_out;
+	int std_err;
 	faux_buf_t *bufin;
 	faux_buf_t *bufout;
 	faux_buf_t *buferr;
@@ -52,16 +52,16 @@ KGET_BOOL(exec, dry_run);
 KSET_BOOL(exec, dry_run);
 
 // STDIN
-KGET(exec, int, stdin);
-KSET(exec, int, stdin);
+KGET(exec, int, std_in);
+KSET(exec, int, std_in);
 
 // STDOUT
-KGET(exec, int, stdout);
-KSET(exec, int, stdout);
+KGET(exec, int, std_out);
+KSET(exec, int, std_out);
 
 // STDERR
-KGET(exec, int, stderr);
-KSET(exec, int, stderr);
+KGET(exec, int, std_err);
+KSET(exec, int, std_err);
 
 // BufIN
 KGET(exec, faux_buf_t *, bufin);
@@ -121,9 +121,9 @@ kexec_t *kexec_new(ksession_t *session, kcontext_type_e type)
 	assert(exec->contexts);
 
 	// I/O
-	exec->stdin = -1;
-	exec->stdout = -1;
-	exec->stderr = -1;
+	exec->std_in = -1;
+	exec->std_out = -1;
+	exec->std_err = -1;
 
 	exec->bufin = faux_buf_new(0);
 	exec->bufout = faux_buf_new(0);
@@ -144,12 +144,12 @@ void kexec_free(kexec_t *exec)
 
 	faux_list_free(exec->contexts);
 
-	if (exec->stdin != -1)
-		close(exec->stdin);
-	if (exec->stdout != -1)
-		close(exec->stdout);
+	if (exec->std_in != -1)
+		close(exec->std_in);
+	if (exec->std_out != -1)
+		close(exec->std_out);
 	if (exec->stderr != -1)
-		close(exec->stderr);
+		close(exec->std_err);
 
 	faux_buf_free(exec->bufin);
 	faux_buf_free(exec->bufout);

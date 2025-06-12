@@ -885,3 +885,56 @@ const kaction_t *kexec_current_action(const kexec_t *exec)
 
 	return kcontext_action(context);
 }
+
+// STDIN
+int kexec_stdin(const kexec_t *exec) {
+	assert(exec);
+	if (!exec)
+		return -1;
+	return exec->std_in;
+}
+bool_t kexec_set_stdin(kexec_t *exec, int std_in)
+{
+	assert(exec);
+	if (!exec)
+		return BOOL_FALSE;
+
+	exec->std_in = std_in;
+	return BOOL_TRUE;
+}
+
+// STDOUT
+int kexec_stdout(const kexec_t *exec) 
+{
+	assert(exec);
+	if (!exec)
+		return -1;
+	return exec->std_out;
+}
+bool_t kexec_set_stdout(kexec_t *exec, int std_out)
+{
+    assert(exec);
+    if (!exec)
+        return BOOL_FALSE;
+
+    exec->std_out = std_out;
+    return BOOL_TRUE;
+}
+
+// STDERR
+int kexec_stderr(const kexec_t *exec)
+{
+    assert(exec);
+    if (!exec)
+        return -1;
+    return exec->std_err;
+}
+bool_t kexec_set_stderr(kexec_t *exec, int std_err)
+{
+    assert(exec);
+    if (!exec)
+        return BOOL_FALSE;
+
+    exec->std_err = std_err;
+    return BOOL_TRUE;
+}

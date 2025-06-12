@@ -26,13 +26,13 @@ bool_t kexec_dry_run(const kexec_t *exec);
 bool_t kexec_set_dry_run(kexec_t *exec, bool_t dry_run);
 // STDIN
 int kexec_stdin(const kexec_t *exec);
-bool_t kexec_set_stdin(kexec_t *exec, int stdin);
+bool_t kexec_set_stdin(kexec_t *exec, int std_in);
 // STDOUT
 int kexec_stdout(const kexec_t *exec);
-bool_t kexec_set_stdout(kexec_t *exec, int stdout);
+bool_t kexec_set_stdout(kexec_t *exec, int std_out);
 // STDERR
 int kexec_stderr(const kexec_t *exec);
-bool_t kexec_set_stderr(kexec_t *exec, int stderr);
+bool_t kexec_set_stderr(kexec_t *exec, int std_err);
 // BUFIN
 faux_buf_t *kexec_bufin(const kexec_t *exec);
 bool_t kexec_set_bufin(kexec_t *exec, faux_buf_t *bufin);

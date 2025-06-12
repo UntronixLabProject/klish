@@ -406,3 +406,63 @@ int kcontext_printf_err(const kcontext_t *context, const char *fmt, ...)
 
 	return rc;
 }
+
+
+int kcontext_stdin(const kcontext_t *context)
+{
+	assert(context);
+	if (!context)
+		return -1;
+
+	return context->std_in;
+}
+
+bool_t kcontext_set_stdin(kcontext_t *context, int std_in)
+{
+	assert(context);
+	if (!context)
+		return BOOL_FALSE;
+
+	context->std_in = std_in;
+	return BOOL_TRUE;
+}
+
+// STDOUT functions
+int kcontext_stdout(const kcontext_t *context)
+{
+	assert(context);
+	if (!context)
+		return -1;
+
+	return context->std_out;
+}
+
+bool_t kcontext_set_stdout(kcontext_t *context, int std_out)
+{
+	assert(context);
+	if (!context)
+		return BOOL_FALSE;
+
+	context->std_out = std_out;
+	return BOOL_TRUE;
+}
+
+// STDERR functions
+int kcontext_stderr(const kcontext_t *context)
+{
+	assert(context);
+	if (!context)
+		return -1;
+
+	return context->std_err;
+}
+
+bool_t kcontext_set_stderr(kcontext_t *context, int std_err)
+{
+	assert(context);
+	if (!context)
+		return BOOL_FALSE;
+
+	context->std_err = std_err;
+	return BOOL_TRUE;
+}
